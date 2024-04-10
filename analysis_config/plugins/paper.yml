@@ -1,101 +1,101 @@
 ClearLag:
   prefix: "❌"
   value: |-
-    Plugins that claim to remove lag actually cause more lag.
+    Plugins que afirmam remover lag na verdade causam mais lag.
 LagAssist:
   prefix: "❌"
   value: |-
-    LagAssist should only be used for analytics and preventative measures.
-    All other features of the plugin should be disabled.
+    LagAssist deve ser usado apenas para análises e medidas preventivas.
+    Todos os outros recursos do plugin devem ser desativados.
 NoMobLag:
   prefix: "❌"
   value: |-
-    Plugins that claim to remove lag actually cause more lag.
+    Plugins que afirmam remover o lag na verdade causam mais lag.
 ServerBooster:
   prefix: "❌"
   value: |-
-    Plugins that claim to remove lag actually cause more lag.
+    Plugins que afirmam remover lag na verdade causam mais lag.
 AntiLag:
   prefix: "❌"
   value: |-
-    Plugins that claim to remove lag actually cause more lag.
+    Plugins que afirmam remover lag na verdade causam mais lag.
 BookLimiter:
   prefix: "❌"
   value: |-
-    You don't need BookLimiter as Paper already fixes all crash bugs.
+    Você não precisa do BookLimiter, pois o Paper já corrige todos os bugs de travamento.
 LimitPillagers:
   prefix: "❌"
   value: |-
-    LimitPillagers is not useful in 1.15 and above.
+    LimitPillagers não é útil na versão 1.15 e acima.
 VillagerOptimiser:
   prefix: "❌"
   value: |-
-    VillagerOptimiser is not useful in 1.15 and above.
+    VillagerOptimiser não é útil na versão 1.15 e acima.
 StackMob:
   prefix: "❌"
   value: |-
-    Stacking mobs causes more lag.
+    Empilhar mobs causa mais lag.
 Stacker:
   prefix: "❌"
   value: |-
-    Stacking mobs causes more lag.
+    Empilhar mobs causa mais lag.
 MobStacker:
   prefix: "❌"
   value: |-
-    Stacking mobs causes more lag.
+    Empilhar mobs causa mais lag.
 WildStacker:
   prefix: "❌"
   value: |-
-    Stacking mobs causes more lag.
+    Empilhar mobs causa mais lag.
 FastAsyncWorldEdit:
   prefix: "❌"
   value: |-
-    FAWE has been known to cause issues.
-    Consider replacing FAWE with [Worldedit](https://enginehub.org/worldedit/#downloads).
+    FAWE é conhecido por causar problemas.
+    Considere substituir o FAWE por [Worldedit](https://enginehub.org/worldedit/#downloads).
 IllegalStack:
   prefix: "❌"
   value: |-
-    You probably don't need IllegalStack as Paper already fixes all dupe and crash bugs.
+    Você provavelmente não precisa do IllegalStack, pois o Paper já corrige todos os bugs de duplicação e travamento.
 ExploitFixer:
   prefix: "❌"
   value: |-
-    You probably don't need ExploitFixer as Paper already fixes all dupe and crash bugs.
+    Você provavelmente não precisa do ExploitFixer, pois o Paper já corrige todos os bugs de duplicação e travamento.
 EntityTrackerFixer:
   prefix: "❌"
   value: |-
-    You don't need EntityTrackerFixer as Paper already has its features.
+    Você não precisa do EntityTrackerFixer, pois o Paper já possui esses recursos.
 Orebfuscator:
   prefix: "❌"
   value: |-
-    You don't need Orebfuscator as [Paper](https://gist.github.com/stonar96/ba18568bd91e5afd590e8038d14e245e) already has its features.
+    Você não precisa do Orebfuscator, pois o [Paper](https://gist.github.com/stonar96/ba18568bd91e5afd590e8038d14e245e) já possui esses recursos.
 GroupManager:
   prefix: "❌"
   value: |-
-    GroupManager is an outdated permission plugin.
-    Consider replacing it with [LuckPerms](https://luckperms.net/download).
+    O GroupManager é um plugin de permissão desatualizado.
+    Considere substituí-lo por [LuckPerms](https://luckperms.net/download).
 PermissionsEx:
   prefix: "❌"
   value: |-
-    PermissionsEx is an outdated permission plugin.
-    Consider replacing it with [LuckPerms](https://luckperms.net/download).
+    O PermissionsEx é um plugin de permissão desatualizado.
+    Considere substituí-lo por [LuckPerms](https://luckperms.net/download).
 bPermissions:
   prefix: "❌"
   value: |-
-    bPermissions is an outdated permission plugin.
-    Consider replacing it with [LuckPerms](https://luckperms.net/download).
+    O bPermissions é um plugin de permissão desatualizado.
+    Considere substituí-lo por [LuckPerms](https://luckperms.net/download).
 PhantomSMP:
 - expressions:
   - paper["world-settings"]["default"]["phantoms-only-attack-insomniacs"] == "false"
   prefix: "❌"
   value: |-
-    You probably don't need PhantomSMP as Paper already has its features.
+    Você provavelmente não precisa do PhantomSMP, pois o Paper já possui esses recursos.
 - expressions:
   - paper["world-settings"]["default"]["phantoms-only-attack-insomniacs"] == "true"
   prefix: "❌"
   value: |-
-    You probably don't need PhantomSMP as Paper already has its features.
-    Enable phantoms-only-attack-insomniacs in paper.yml.
+    Você provavelmente não precisa do PhantomSMP, pois o Paper já possui esses recursos.
+    Ative phantoms-only-attack-insomniacs no arquivo paper.yml.
 PacketLimiter:
   prefix: "❌"
   value: |-
-    You don't need PacketLimiter as Paper already has its features.
+    Você não precisa do PacketLimiter, pois o Paper já possui esses recursos.
