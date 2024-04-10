@@ -281,7 +281,7 @@ module.exports = async function analyzeProfile(message, client, args) {
 	const suggestions = [...fields];
 	if (suggestions.length >= 13) {
 		fields.splice(12, suggestions.length, { name: `Mais ${suggestions.length - 12} recomendações`, value: 'Clique nos botões abaixo para ver mais' });
-		ProfileEmbed.setFooter({ text: `Solicitado por ${author.tag} • Página 1 de ${Math.ceil(suggestions.length / 12)}`, iconURL: author.avatarURL() });
+		ProfileEmbed.setFooter({ text: `Requested by ${author.tag} • Page 1 of ${Math.ceil(suggestions.length / 12)}`, iconURL: author.avatarURL() });
 		components.push(
 			new ActionRowBuilder()
 				.addComponents([
