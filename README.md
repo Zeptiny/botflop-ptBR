@@ -5,7 +5,8 @@
 
 [Clique Aqui](https://dc.tryxia.com) para testar o BotFlop traduzido no Discord da Tryxia.
 
-OBS: O bot ainda está em teste, link para adição em servidor públicos estará disponível em breve
+[Clique Aqui](https://discord.com/oauth2/authorize?client_id=1227449592409227274&permissions=0&scope=bot) para convidar o BotFlop Traduzido para o seu servidor.
+OBS: Poderá ter, e irá ter, erros na tradução. Caso encontre algum problema que quebre o bot, teste também no BotFlop original, se o problema ocorrer também no BotFlop original, reporte o problema para a BirdFlop, caso contrário, abra um issue neste Github.]
 
 # Habilidades Atuais
 ## Analise resports do timings (Paper) e Profiles do Spark
