@@ -11,15 +11,15 @@ function componentToHex(c) {
 module.exports = async function analyzeProfile(message, client, args) {
 	const author = message.author ?? message.user;
 	const ProfileEmbed = new EmbedBuilder()
-		.setDescription('Estes não são valores mágicos. Muitas dessas configurações têm consequências reais na mecânica do seu servidor. Consulte [este guia](https://eternity.community/index.php/paper-optimization/) para obter informações detalhadas sobre a funcionalidade de cada configuração.')
-		.setFooter({ text: `Solicitado por ${author.tag}`, iconURL: author.avatarURL() });
+		.setDescription('These are not magic values. Many of these settings have real consequences on your server\'s mechanics. See [this guide](https://eternity.community/index.php/paper-optimization/) for detailed information on the functionality of each setting.')
+		.setFooter({ text: `Requested by ${author.tag}`, iconURL: author.avatarURL() });
 
 	let url;
 	const fields = [];
 
 	for (const arg of args) {
 		if (message.commandName && (arg.startsWith('https://timin') || arg.startsWith('https://www.spigotmc.org/go/timings?url=') || arg.startsWith('https://spigotmc.org/go/timings?url='))) {
-			ProfileEmbed.addFields([{ name: '⚠️ Timings Report', value: 'Este é um relatório do Timings. Use /timings para esse tipo de relatório.' }]);
+			ProfileEmbed.addFields([{ name: '⚠️ Timings Report', value: 'This is a Timings report. Use /timings instead for this type of report.' }]);
 			return [{ embeds: [ProfileEmbed] }];
 		}
 
@@ -35,15 +35,15 @@ module.exports = async function analyzeProfile(message, client, args) {
 	// Start typing
 	if (!message.commandName) await message.channel.sendTyping();
 
-	client.logger.info(`Spark Profile analisado a partir de ${author.tag} (${author.id}): ${url}`);
+	client.logger.info(`Spark Profile analyzed from ${author.tag} (${author.id}): ${url}`);
 
 	const response_raw = await fetch(url + '?raw=1');
 	const sampler = await response_raw.json().catch(() => undefined);
 
 	if (!sampler) {
 		ProfileEmbed.setFields([{
-			name: '❌ Erro de processamento',
-			value: 'O bot não pode processar este perfil do Spark. Use um perfil alternativo do Spark.',
+			name: '❌ Processing Error',
+			value: 'The bot cannot process this Spark profile. Please use an alternative Spark profile.',
 			inline: true,
 		}]);
 		ProfileEmbed.setColor(0xff0000);
@@ -75,15 +75,15 @@ module.exports = async function analyzeProfile(message, client, args) {
 	
 	if(!sampler.metadata.hasOwnProperty('serverConfigurations')) {
 		ProfileEmbed.setFields([{
-			name: '❌ Erro de processamento',
-			value: 'O bot não pode processar este perfil do Spark. Este é um relatório de resumo de heap.',
+			name: '❌ Processing Error',
+			value: 'The bot cannot process this Spark profile. This is a heap summary report.',
 			inline: true,
 		}]);
 		ProfileEmbed.setColor(0xff0000);
 		ProfileEmbed.setDescription(null);
 		return [{ embeds: [ProfileEmbed] }];
 	}	
-	ProfileEmbed.setAuthor({ name: 'Análise de Profile Spark', iconURL: 'https://i.imgur.com/deE1oID.png', url: url });
+	ProfileEmbed.setAuthor({ name: 'Spark Profile Analysis', iconURL: 'https://i.imgur.com/deE1oID.png', url: url });
 
 	const platform = sampler.metadata.platform.name;
 
@@ -128,8 +128,8 @@ module.exports = async function analyzeProfile(message, client, args) {
 	const mcversion = version.split('(MC: ')[1];
 	if(mcversion == undefined) {
 		ProfileEmbed.setFields([{
-			name: '❌ Erro de processamento',
-			value: 'O bot não pode processar este perfil do Spark. Parece que a plataforma não é compatível para análise. Plataforma:' + platform,
+			name: '❌ Processing Error',
+			value: 'The bot cannot process this Spark profile. It appears that the platform is not supported for analysis. Platform: ' + platform,
 			inline: true,
 		}]);
 		ProfileEmbed.setColor(0xff0000);
@@ -138,7 +138,7 @@ module.exports = async function analyzeProfile(message, client, args) {
 	}
 	if (mcversion.split(')')[0] != latest) {
 		version = version.replace('git-', '').replace('MC: ', '');
-		fields.push({ name: '❌ Desatualizado', value: `Você está usando \`${version}\`. Atualize para \`${latest}\`.`, inline: true });
+		fields.push({ name: '❌ Outdated', value: `You are using \`${version}\`. Update to \`${latest}\`.`, inline: true });
 	}
 
 	if (PROFILE_CHECK.servers) {
@@ -159,14 +159,14 @@ module.exports = async function analyzeProfile(message, client, args) {
 				max_mem = max_mem.replace('M', '');
 				max_mem = max_mem.replace('g', '000');
 				max_mem = max_mem.replace('m', '');
-				if (parseInt(max_mem) < 10000) fields.push({ name: '❌ Pouca memória', value:'ZGC apenas é bom quando se tem muita memória.', inline: true });
+				if (parseInt(max_mem) < 10000) fields.push({ name: '❌ Low Memory', value:'ZGC is only good with a lot of memory.', inline: true });
 			}
 		});
 	}
 	else if (flags.includes('-Daikars.new.flags=true')) {
 		if (!flags.includes('-XX:+PerfDisableSharedMem')) fields.push({ name: '❌ Outdated Flags', value: 'Add `-XX:+PerfDisableSharedMem` to flags.', inline: true });
 		if (!flags.includes('-XX:G1MixedGCCountTarget=4')) fields.push({ name: '❌ Outdated Flags', value: 'Add `XX:G1MixedGCCountTarget=4` to flags.', inline: true });
-		if (!flags.includes('-XX:+UseG1GC') && jvm_version.startsWith('1.8.')) fields.push({ name: '❌ Aikar\'s Flags', value: 'Você precisa utilizar G1GC quando se utiliza as flags do Aikar\'s flags.', inline: true });
+		if (!flags.includes('-XX:+UseG1GC') && jvm_version.startsWith('1.8.')) fields.push({ name: '❌ Aikar\'s Flags', value: 'You must use G1GC when using Aikar\'s flags.', inline: true });
 		if (flags.includes('-Xmx')) {
 			let max_mem = 0;
 			const flaglist = flags.split(' ');
@@ -179,8 +179,8 @@ module.exports = async function analyzeProfile(message, client, args) {
 					max_mem = max_mem.replace('m', '');
 				}
 			});
-			if (parseInt(max_mem) < 5400) fields.push({ name: '❌ Low Memory', value: 'Aloque pelo menos 6-12GB de ram para o seu servidor se conseguir proporcionar.', inline: true });
-			if (1000 * sampler.metadata.platformStatistics.playerCount / parseInt(max_mem) > 6 && parseInt(max_mem) < 10000) fields.push({ name: '❌ Pouca Ram', value: 'Você deveria usar mais RAM com tantos jogadores.', inline: true });
+			if (parseInt(max_mem) < 5400) fields.push({ name: '❌ Low Memory', value: 'Allocate at least 6-10GB of ram to your server if you can afford it.', inline: true });
+			if (1000 * sampler.metadata.platformStatistics.playerCount / parseInt(max_mem) > 6 && parseInt(max_mem) < 10000) fields.push({ name: '❌ Low Memory', value: 'You should be using more RAM with this many players.', inline: true });
 			if (flags.includes('-Xms')) {
 				let min_mem = 0;
 				flaglist.forEach(flag => {
@@ -192,19 +192,19 @@ module.exports = async function analyzeProfile(message, client, args) {
 						min_mem = min_mem.replace('m', '');
 					}
 				});
-				if (min_mem != max_mem) fields.push({ name: '❌ Aikar\'s Flags', value: 'O seu Xmx e Xms devem ser iguais quando se está utilizando as flags do Aikar.', inline: true });
+				if (min_mem != max_mem) fields.push({ name: '❌ Aikar\'s Flags', value: 'Your Xmx and Xms values should be equal when using Aikar\'s flags.', inline: true });
 			}
 		}
 	}
 	else if (flags.includes('-Dusing.aikars.flags=mcflags.emc.gs')) {
-		fields.push({ name: '❌ Outdated Flags', value: 'Atualize as [Aikar\'s flags](https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/).', inline: true });
+		fields.push({ name: '❌ Outdated Flags', value: 'Update [Aikar\'s flags](https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/).', inline: true });
 	}
 	else {
 		fields.push({ name: '❌ Aikar\'s Flags', value: 'Use [Aikar\'s flags](https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/).', inline: true });
 	}
 
 	const cpu = sampler.metadata.systemStatistics.cpu.threads;
-	if (cpu <= 2) fields.push({ name: '❌ Threads', value: `Você apenas tem ${cpu} thread(s). Encontre uma [hospedagem melhor](https://docs.artbenedetti.com/hospedagem/comparacao).`, inline: true });
+	if (cpu <= 2) fields.push({ name: '❌ Threads', value: `You only have ${cpu} thread(s). Find a [better host](https://www.birdflop.com).`, inline: true });
 
 	// Probably a way to do this, idk yet
 	// const handlers = Object.keys(request_raw.idmap.handlers).map(i => { return request_raw.idmap.handlers[i]; });
@@ -243,9 +243,9 @@ module.exports = async function analyzeProfile(message, client, args) {
 
 	plugins.forEach(plugin => {
 		if (plugin.authors && plugin.authors.toLowerCase().includes('songoda')) {
-			if (plugin.name == 'EpicHeads') fields.push({ name: '❌ EpicHeads', value: 'Este plugin foi feito por Songoda. Songoda é incompleto|sketchy. Você deve encontrar uma alternativa como [HeadsPlus](https://spigotmc.org/resources/headsplus-»-1-8-1-16-4.40265/) ou [HeadDatabase](https://www.spigotmc.org/resources/head-database.14280/).', inline: true });
-			else if (plugin.name == 'UltimateStacker') fields.push({ name: '❌ UltimateStacker', value: 'Na verdade, plugin de empilhamento causam mais lag.\nRemova o UltimateStacker.', inline: true });
-			else fields.push({ name: `❌ ${plugin.name}`, value: 'Este plugin foi feito por Songoda. Songoda é incompleto|sketchy. Você deveria encontrar uma alternativa melhor.', inline: true });
+			if (plugin.name == 'EpicHeads') fields.push({ name: '❌ EpicHeads', value: 'This plugin was made by Songoda. Songoda is sketchy. You should find an alternative such as [HeadsPlus](https://spigotmc.org/resources/headsplus-»-1-8-1-16-4.40265/) or [HeadDatabase](https://www.spigotmc.org/resources/head-database.14280/).', inline: true });
+			else if (plugin.name == 'UltimateStacker') fields.push({ name: '❌ UltimateStacker', value: 'Stacking plugins actually causes more lag.\nRemove UltimateStacker.', inline: true });
+			else fields.push({ name: `❌ ${plugin.name}`, value: 'This plugin was made by Songoda. Songoda is sketchy. You should find an alternative.', inline: true });
 		}
 	});
 
@@ -274,14 +274,14 @@ module.exports = async function analyzeProfile(message, client, args) {
 	ProfileEmbed.setColor(parseInt('0x' + componentToHex(red) + componentToHex(green) + '00'));
 
 	if (fields.length == 0) {
-		ProfileEmbed.addFields([{ name: '✅ Tudo certo', value: 'Analisado sem nenhuma recomendação.' }]);
+		ProfileEmbed.addFields([{ name: '✅ All good', value: 'Analyzed with no recommendations.' }]);
 		return [{ embeds: [ProfileEmbed] }];
 	}
 	let components = [];
 	const suggestions = [...fields];
 	if (suggestions.length >= 13) {
-		fields.splice(12, suggestions.length, { name: `Plus ${suggestions.length - 12} mais recomendações`, value: 'Clique o botão abaixo para mais' });
-		ProfileEmbed.setFooter({ text: `Solicitado por ${author.tag} • Página 1 de ${Math.ceil(suggestions.length / 12)}`, iconURL: author.avatarURL() });
+		fields.splice(12, suggestions.length, { name: `Plus ${suggestions.length - 12} more recommendations`, value: 'Click the buttons below to see more' });
+		ProfileEmbed.setFooter({ text: `Requested by ${author.tag} • Page 1 of ${Math.ceil(suggestions.length / 12)}`, iconURL: author.avatarURL() });
 		components.push(
 			new ActionRowBuilder()
 				.addComponents([
@@ -302,13 +302,13 @@ module.exports = async function analyzeProfile(message, client, args) {
 	}
 	ProfileEmbed.addFields(fields);
 	if (avgtps >= 19) {
-		ProfileEmbed.setFields([{ name: '✅ O seu servidor não está lagando', value: `Seu servidor está funcionando bem com um TPS médio de ${avgtps}.` }]);
+		ProfileEmbed.setFields([{ name: '✅ Your server isn\'t lagging', value: `Your server is running fine with an average TPS of ${avgtps}.` }]);
 		components = [
 			new ActionRowBuilder()
 				.addComponents([
 					new ButtonBuilder()
 						.setCustomId('analysis_force')
-						.setLabel('Forçar análise')
+						.setLabel('Dismiss and force analysis')
 						.setStyle(ButtonStyle.Secondary),
 					new ButtonBuilder()
 						.setURL('https://github.com/pemigrade/botflop')
