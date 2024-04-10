@@ -12,7 +12,7 @@ module.exports = async function analyzeProfile(message, client, args) {
 	const author = message.author ?? message.user;
 	const ProfileEmbed = new EmbedBuilder()
 		.setDescription('Estes não são valores mágicos. Muitas dessas configurações têm consequências reais na mecânica do seu servidor. Consulte [este guia](https://eternity.community/index.php/paper-optimization/) para obter informações detalhadas sobre a funcionalidade de cada configuração.')
-		.setFooter({ text: `Solicitado por ${author.tag}`, iconURL: author.avatarURL() });
+		.setFooter({ text: `Requested by ${author.tag}`, iconURL: author.avatarURL() });
 
 	let url;
 	const fields = [];
