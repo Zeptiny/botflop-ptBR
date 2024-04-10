@@ -2,7 +2,7 @@ const analyzeTimings = require('../functions/analyzeTimings.js');
 const { EmbedBuilder, ApplicationCommandOptionType, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 module.exports = {
 	name: 'timings',
-	description: 'Analyze Paper timings to help optimize your server.',
+	description: 'Analise o Timings do Paper para ajudar a otimizar o seu servidor.',
 	args: true,
 	usage: '<Timings Link>',
 	options: [{
@@ -14,7 +14,7 @@ module.exports = {
 	async execute(message, args, client) {
 		try {
 			const timingsresult = await analyzeTimings(message, client, args);
-			const timingsmsg = await message.reply(timingsresult ? timingsresult[0] : 'Invalid Timings URL.');
+			const timingsmsg = await message.reply(timingsresult ? timingsresult[0] : 'URL do Timings inválido.');
 			if (!timingsresult) return;
 
 			// Get the issues from the timings result
@@ -35,7 +35,7 @@ module.exports = {
 					const fields = [...suggestions];
 					const components = [];
 					if (suggestions.length >= 13) {
-						fields.splice(12, suggestions.length, { name: '✅ Your server isn\'t lagging', value: `**Plus ${suggestions.length - 12} more recommendations**\nClick the buttons below to see more` });
+						fields.splice(12, suggestions.length, { name: '✅ O seu servidor não está lagando', value: `**Mais ${suggestions.length - 12} recomendações**\nClique no botão abaixo para ver mais` });
 						components.push(
 							new ActionRowBuilder()
 								.addComponents([

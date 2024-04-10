@@ -2,19 +2,19 @@ const analyzeProfile = require('../functions/analyzeProfile.js');
 const { EmbedBuilder, ApplicationCommandOptionType, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 module.exports = {
 	name: 'profile',
-	description: 'Analyze Spark profiles to help optimize your server.',
+	description: 'Analise um profiler do SPark para ajudar a otimizar o seu servidor.',
 	args: true,
 	usage: '<Spark Profile Link>',
 	options: [{
 		'type': ApplicationCommandOptionType.String,
 		'name': 'url',
-		'description': 'The Spark Profile URL',
+		'description': 'O URL do Profiler do Spark',
 		'required': true,
 	}],
 	async execute(message, args, client) {
 		try {
 			const profileresult = await analyzeProfile(message, client, args);
-			const profilemsg = await message.reply(profileresult ? profileresult[0] : 'Invalid Profile URL.');
+			const profilemsg = await message.reply(profileresult ? profileresult[0] : 'URL do Profile Inválido.');
 			if (!profileresult) return;
 
 			// Get the issues from the profile result
@@ -35,7 +35,7 @@ module.exports = {
 					const fields = [...suggestions];
 					const components = [];
 					if (suggestions.length >= 13) {
-						fields.splice(12, suggestions.length, { name: '✅ Your server isn\'t lagging', value: `**Plus ${suggestions.length - 12} more recommendations**\nClick the buttons below to see more` });
+						fields.splice(12, suggestions.length, { name: '✅ O seu servidor não está lagando', value: `**Mais ${suggestions.length - 12} recomendações**\nClique no link abaixo para ver mais` });
 						components.push(
 							new ActionRowBuilder()
 								.addComponents([
