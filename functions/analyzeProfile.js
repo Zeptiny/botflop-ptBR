@@ -243,9 +243,9 @@ module.exports = async function analyzeProfile(message, client, args) {
 
 	plugins.forEach(plugin => {
 		if (plugin.authors && plugin.authors.toLowerCase().includes('songoda')) {
-			if (plugin.name == 'EpicHeads') fields.push({ name: '❌ EpicHeads', value: 'Esse plugin foi feito pela Songado. Songoda é incompleta/redumentar. Você deveria encontrar uma alternativa melhor, como [HeadsPlus](https://spigotmc.org/resources/headsplus-»-1-8-1-16-4.40265/) ou [HeadDatabase](https://www.spigotmc.org/resources/head-database.14280/).', inline: true });
+			if (plugin.name == 'EpicHeads') fields.push({ name: '❌ EpicHeads', value: 'Esse plugin foi feito pela Songoda. Songoda é incompleta/redumentar. Você deveria encontrar uma alternativa melhor, como [HeadsPlus](https://spigotmc.org/resources/headsplus-»-1-8-1-16-4.40265/) ou [HeadDatabase](https://www.spigotmc.org/resources/head-database.14280/).', inline: true });
 			else if (plugin.name == 'UltimateStacker') fields.push({ name: '❌ UltimateStacker', value: 'Stacking plugins actually causes more lag.\nRemove UltimateStacker.', inline: true });
-			else fields.push({ name: `❌ ${plugin.name}`, value: 'Esse plugin foi feito pela Songado. Songoda é incompleta/redumentar. Você deveria encontrar uma alternativa melhor.', inline: true });
+			else fields.push({ name: `❌ ${plugin.name}`, value: 'Esse plugin foi feito pela Songoda. Songoda é incompleta/redumentar. Você deveria encontrar uma alternativa melhor.', inline: true });
 		}
 	});
 
