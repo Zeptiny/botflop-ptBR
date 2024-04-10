@@ -1,7 +1,7 @@
 const { ApplicationCommandType, ActivityType } = require('discord.js');
 module.exports = async (client) => {
 	client.logger.info('Bot started!');
-	client.user.setPresence({ activities: [{ name: 'birdflop.com', type: ActivityType.Watching }] });
+	client.user.setPresence({ activities: [{ name: 'tryxia.com', type: ActivityType.Watching }] });
 	if (!client.application?.owner) await client.application?.fetch();
 	const commands = await client.application?.commands.fetch();
 	await client.commands.forEach(async command => {

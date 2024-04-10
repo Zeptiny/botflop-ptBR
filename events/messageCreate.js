@@ -49,15 +49,15 @@ module.exports = async (client, message) => {
 					}
 
 					let response = await createPaste(text, { server: 'https://bin.birdflop.com' });
-					if (truncated) response = response + '\n(file was truncated because it was too long.)';
+					if (truncated) response = response + '\n(Arquivo foi truncado porque era muito longo.)';
 
 					const PasteEmbed = new EmbedBuilder()
-						.setTitle('Please use a paste service')
+						.setTitle('Por favor utilize algum serviço para os logs')
 						.setColor(0x1D83D4)
 						.setDescription(response)
-						.setFooter({ text: `Requested by ${message.author.tag}`, iconURL: message.author.avatarURL() });
+						.setFooter({ text: `Requisitado por ${message.author.tag}`, iconURL: message.author.avatarURL() });
 					await message.channel.send({ embeds: [PasteEmbed] });
-					client.logger.info(`File uploaded by ${message.author.tag} (${message.author.id}): ${response}`);
+					client.logger.info(`Arquivo enviado por ${message.author.tag} (${message.author.id}): ${response}`);
 				}
 			}
 		}
